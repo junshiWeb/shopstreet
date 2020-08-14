@@ -7,7 +7,7 @@ export default function axios(option) {
 			baseURL: 'http://152.136.185.210:8000/api/z8',
 			timeout: 5000
 		});
-
+    
 		// 配置请求和响应拦截
 		instance.interceptors.request.use(config => {
 			// console.log('来到了request拦截success中');

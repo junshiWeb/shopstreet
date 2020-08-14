@@ -16,7 +16,7 @@
     components: {
 		  NavBar,
       CartList,
-      BottomBar
+      BottomBar 
     },
     computed: {
 		  cartList() {

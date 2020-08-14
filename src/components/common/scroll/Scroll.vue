@@ -1,6 +1,6 @@
 <template>
   <div ref="wrapper">
-    <slot></slot>
+    <div><slot></slot></div>
   </div>
 </template>
 
@@ -44,8 +44,9 @@
         })
 
         // 2.将监听事件回调
-        this.scroll.on('scroll', pos => {
-          this.$emit('scroll', pos)
+        this.scroll.on('scroll', position => {
+          this.$emit('scroll', position)
+          // console.log(pos);
         })
 
         // 3.监听上拉到底部

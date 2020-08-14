@@ -12,6 +12,9 @@ const mutations = {
       info.checked = true
       state.cartList.push(info)
     }
+  },
+  leaveHome(state, info) {
+    console.log(info);
   }
 }
 

@@ -22,10 +22,10 @@
     <back-top @backTop="backTop" class="back-top" v-show="showBackTop">
       <img src="~assets/img/common/top.png" alt />
     </back-top>
-    <!-- <toast :msg="msg" ></toast> -->
-    <div class="toast" :class="{detailtoast: isToast}">
+    <toast msg="哈哈哈" ></toast>
+    <!-- <div class="toast" :class="{detailtoast: isToast}">
       {{msg}}
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -116,19 +116,7 @@ export default {
       let length = this.themeTops.length;
       for (let i = 0; i < length; i++) {
         let iPos = this.themeTops[i];
-        /**
-         * 判断的方案:
-         *  方案一:
-         *    条件: (i < (length-1) && currentPos >= iPos && currentPos < this.themeTops[i+1]) || (i === (length-1) && currentPos >= iPos),
-         *    优点: 不需要引入其他的内容, 通过逻辑解决
-         *    缺点: 判断条件过长, 并且不容易理解
-         *  方案二:
-         *    条件: 给themeTops最后添加一个很大的值, 用于和最后一个主题的top进行比较.
-         *    优点: 简洁明了, 便于理解
-         *    缺点: 需要引入一个较大的int数字
-         * 疑惑: 在第一个判断中, 为什么不能直接判断(currentPos >= iPos)即可?
-         * 解答: 比如在某一个currentPos大于第0个时, 就会break, 不会判断后面的i了.
-         */
+        // 监听判断
         if (position >= iPos && position < this.themeTops[i + 1]) {
           if (this.currentIndex !== i) {
             this.currentIndex = i;
@@ -143,21 +131,16 @@ export default {
     },
     addToCart() {
       // 1.创建对象
-      const obj = {};
+      const product = {}; 
       // 2.对象信息
-      obj.iid = this.iid;
-      obj.imgURL = this.topImages[0];
-      obj.title = this.goods.title;
-      obj.desc = this.goods.desc;
-      obj.newPrice = this.goods.nowPrice;
+      product.iid = this.iid;
+      product.imgURL = this.topImages[0];
+      product.title = this.goods.title;
+      product.desc = this.goods.desc;
+      product.newPrice = this.goods.nowPrice;
       // 3.添加到Store中
-      this.$store.commit("addCart", obj);
-      this.isToast = true 
-      setTimeout(function() {
-        this.isToast = false
-        console.log('22');
-      }, 2000)
-      this.msg = '成功添加一个商品'
+      this.$store.commit("addCart", product);
+      // console.log(this.addCart());
     },
     _getDetailData() {
       // 1.获取iid

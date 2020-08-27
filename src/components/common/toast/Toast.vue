@@ -1,5 +1,5 @@
 <template>
-  <div class="toast" :class="{detailtoast:isToast}">
+  <div class="toast" v-show="isToast">
     <p>{{msg}}</p>
   </div>
 </template>
@@ -41,9 +41,7 @@ export default {
   color: #fff;
   background: rgba(30, 30, 30, 0.6);
   border-radius: 10px;
-  z-index: -1;
-}
-.detailtoast {
   z-index: 2;
 }
+
 </style>

@@ -17,7 +17,7 @@
       class="content"
       ref="scroll"
       @scroll="contentScroll"
-      @pullingUp="loadMore"
+      @pullingUp="loadMore" 
       :data="showGoodsList"
       :pull-up-load="true"
       :probe-type="3"
@@ -39,15 +39,12 @@
 <script>
 import NavBar from "common/navbar/NavBar";
 import Scroll from "common/scroll/Scroll";
-
-import TabControl from "content/tabControl/TabControl";
 import BackTop from "content/backTop/BackTop";
-
+import TabControl from "content/tabControl/TabControl";
 import HomeSwiper from "./childComps/HomeSwiper";
 import FeatureView from "./childComps/FeatureView";
 import RecommendView from "./childComps/RecommendView";
 import GoodsList from "./childComps/GoodsList";
-
 import { getHomeMultidata, getHomeData, RECOMMEND, BANNER } from "network/home";
 import { NEW, POP, SELL, BACKTOP_DISTANCE } from "@/common/const";
 
@@ -119,14 +116,12 @@ export default {
     // console.log(this.$store);
   },
   updated() {
-    // this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop
-    // console.log(this.$refs.tabControl.$el.offsetTop);
     this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop;
   },
   methods: {
     // 导航点击控制
     tabClick(index) {
-      // 初始化导航距离
+      // 初始化导航
       switch (index) {
         case 0:
           this.currentType = POP;
@@ -185,18 +180,14 @@ export default {
       }
       this.$refs.tabControl.currentIndex = index;
       this.$refs.tabControl1.currentIndex = index;
-     
     },
     // 监听滚动距离
     contentScroll(position) {
-      // console.log(position);
-      // console.log(this.$refs.scroll.scroll.startY);
       // 决定置顶导航是否显示
-      // console.log(this.tabOffsetTop);
       this.isTabFixed = position.y < -this.tabOffsetTop;
       // 决定backTop是否显示
       this.showBackTop = position.y < -BACKTOP_DISTANCE;
-      // 监听导航的滚动距离
+     
     },
     // 上拉加载
     loadMore() {
@@ -211,10 +202,6 @@ export default {
       getHomeMultidata().then((res) => {
         this.banners = res.data[BANNER].list;
         this.recommends = res.data[RECOMMEND].list;
-        // 下次更新DOM时,获取新的tabOffsetTop值(不保险,可以在updated钩子中获取)
-        // this.$nextTick(() => {
-        //   this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop
-        // })
       });
     },
     // 导航数据请求
@@ -233,7 +220,6 @@ export default {
 
 <style scoped>
 #home {
-  /*position: relative;*/
   height: 100vh;
 }
 

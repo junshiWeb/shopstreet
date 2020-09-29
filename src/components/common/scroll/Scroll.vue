@@ -8,6 +8,12 @@
   import BScroll from 'better-scroll'
 
 	export default {
+    /**
+     * 调用滚动，需要提供三个参数 
+     * probetype 1:不监听滚动 2：监听鼠标滚动 3：监听所有滚动
+     * data 展示的数据
+     * pullUpLoad 监听下拉加载，默认不监听
+     */
 		name: "Scroll",
     props: {
 		  probeType: {
@@ -31,6 +37,7 @@
       }
     },
     mounted() {
+      // 初始化滚动
 		  setTimeout(this.__initScroll, 20)
     },
     methods: {
@@ -46,7 +53,6 @@
         // 2.将监听事件回调
         this.scroll.on('scroll', position => {
           this.$emit('scroll', position)
-          // console.log(pos);
         })
 
         // 3.监听上拉到底部
@@ -55,12 +61,15 @@
           this.$emit('pullingUp')
         })
       },
+      // 刷新
       refresh() {
         this.scroll && this.scroll.refresh && this.scroll.refresh()
       },
+      // 上拉加载
       finishPullUp() {
 		    this.scroll && this.scroll.finishPullUp && this.scroll.finishPullUp()
       },
+      // 跳转指定位置
       scrollTo(x, y, time) {
 		    this.scroll && this.scroll.scrollTo && this.scroll.scrollTo(x, y, time)
       }

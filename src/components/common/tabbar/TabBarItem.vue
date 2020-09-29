@@ -1,5 +1,6 @@
 <template>
   <div id="tab-bar-item" @click="itemClick">
+    <!-- 选项卡的图标和内容 -->
     <div class="item-icon" v-show="!isActive"><slot name="icon"></slot></div>
     <div class="item-active-icon" v-show="isActive"><slot name="active-icon"></slot></div>
     <div class="item-text" :style="activeStyle"><slot name="text"></slot></div>
@@ -16,14 +17,17 @@
       }
     },
     computed: {
+      // 当前路由判断
 			isActive() {
 				return this.$route.path.indexOf(this.link) !== -1
       },
+      // 当前路由样式
       activeStyle() {
 				return this.isActive ? {'color': 'red'} : {}
       }
     },
     methods: {
+      // 路由跳转
 			itemClick() {
 				this.$router.replace(this.link)
       }

@@ -32,7 +32,7 @@
     mounted: function () {
 		  setTimeout(this._autoLayout, 20)
     },
-    updated: function () {
+    updated: function () { 
       this._autoLayout()
     },
     methods: {
